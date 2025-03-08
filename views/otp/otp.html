@@ -1,0 +1,421 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Jonotarbazar Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/imgs/theme/jb.png" />
+    <link href="../../assets/css/main.css?v=6.0" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<style>
+    .height-100 {
+        height: 100vh
+    }
+
+    .card {
+        width: 400px;
+        border: none;
+        height: auto;
+        box-shadow: 0px 5px 20px 0px #d2dae3;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .card h6 {
+        color: rgb(7, 7, 7);
+        font-size: 20px;
+
+
+    }
+
+    .inputs input {
+        width: 40px;
+        height: 40px
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0
+    }
+
+    .card-2 {
+        background-color: #fff;
+        padding: 10px;
+        width: 350px;
+        height: auto;
+        bottom: -50px;
+        left: 20px;
+        position: absolute;
+        border-radius: 5px
+    }
+
+    .card-2 .content {
+        margin-top: 50px
+    }
+
+    .card-2 .content a {
+        color: rgb(0, 255, 76)
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border: 2px solid rgb(0, 255, 94);
+    }
+
+    .form-control {
+        padding-left: 0 !important;
+    }
+
+    .validate {
+        border-radius: 20px;
+        height: 40px;
+        background-color: rgb(57, 213, 91);
+        border: 1px solid rgb(0, 255, 145);
+        width: auto;
+    }
+
+    button:disabled {
+        background-color: #ddd;
+        cursor: not-allowed;
+    }
+
+    #timer {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #resendButton {
+        align-items: center;
+        display: none;
+    }
+</style>
+
+<body>
+    <main>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                
+                
+                    <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true"
+                        style="display: none; background-color: black; color: beige;">
+                        <div class="toast-header" style="background-color: black; color: beige;">
+                            <strong class="me-auto">Notification</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                
+                        </div>
+                    </div>
+                
+                </div>
+        <header class="main-header style-2 navbar">
+            <div class="col-brand">
+
+                <img src="../../assets/imgs/gov.png" class="logo" width="60px;" width="100%" alt="BDS" />
+
+            </div>
+            <div class="col-nav">
+                <ul class="nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </header>
+        <form id="otp-form">
+            <section class="content-main mt-80 mb-80">
+
+                <div class="card mx-auto">
+
+                    <div class="card-body text-center">
+
+                        <div class="justify-content-center align-items-center">
+
+                            <div class="position-relative">
+                                <h6>Please enter the one time password <br> to verify your account</h6>
+                                <div class="py-2"> <span>A code has been sent to</span> <small id="maskedNumber">
+                                       
+                                    </small> </div>
+                                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                                    <input class="m-2 text-center form-control rounded" type="text" name="first" />
+                                    <input class="m-2 text-center form-control rounded" type="text" name="second" />
+                                    <input class="m-2 text-center form-control rounded" type="text" name="third" />
+                                    <input class="m-2 text-center form-control rounded" type="text" name="fourth" />
+
+                                </div>
+                                <div class="p-2">
+                                    <button type="submit" class="btn btn-success px-4" id="validateButton">Validate</button>
+                                </div>
+                                <p id="timerDisplay">Resend OTP in <span id="timer"></span> seconds</p>
+                                <button id="resendButton" class="btn btn-primary mx-auto">Resend
+                                    OTP</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <a href="#" onclick="window.electronAPI.navigate('login', 'login')">back to login</a>
+                </div>
+
+            </section>
+        </form>
+
+        <footer class="main-footer text-center">
+            <p class="font-xs">
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                &copy; BDS <small>Breakdown syndicate</small> .
+            </p>
+            <p class="font-xs mb-30">All rights reserved</p>
+        </footer>
+    </main>
+    <script src="../../assets/js/vendors/jquery-3.6.0.min.js"></script>
+
+
+    <script src="../../assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/vendors/jquery.fullscreen.min.js"></script>
+
+    <!--otp input focus-->
+    <script>
+        document.addEventListener("DOMContentLoaded", async function (e) {
+            e.preventDefault()
+            const validateBtn = document.querySelector('#validateButton');
+           // validateBtn.disabled = true;
+            function OTPInput() {
+
+                const inputs = document.querySelectorAll('#otp > input');
+                
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].addEventListener('input', function () {
+                        if (this.value.length > 1) {
+                            this.value = this.value[0]; //    
+                        }
+                        if (this.value !== '' && i < inputs.length - 1) {
+                            inputs[i + 1].focus(); //   
+                        }
+                    });
+
+                    inputs[i].addEventListener('keydown', function (event) {
+                        if (event.key === 'Backspace') {
+                            this.value = '';
+                            if (i > 0) {
+                                inputs[i - 1].focus();
+                            }
+                        }
+                    });
+                }
+            }
+
+            OTPInput();
+            
+           // validateBtn.disabled = false;
+            // const validateBtn = document.getElementById('validateBtn');
+            // validateBtn.addEventListener('click', function() {
+            //     let otp = '';
+            //     document.querySelectorAll('#otp > input').forEach(input => otp += input.value);
+            //     alert(`Entered OTP: ${otp}`);  
+            // });
+        });
+    </script>
+
+    <!--otp resend-->
+    <script>
+        const timerElement = document.getElementById('timer');
+        const resendButton = document.getElementById('resendButton');
+        const timerDisplay = document.getElementById('timerDisplay');
+       
+        resendButton.disabled = true
+        let countdown = 90; // Initial timer duration in seconds
+
+        const startTimer = () => {
+            const interval = setInterval(() => {
+                countdown -= 1;
+                timerElement.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    timerDisplay.style.display = 'none';
+                    resendButton.disabled = false // Show the resend button
+                    resendButton.style.display = 'block';
+                }
+            }, 1000); // Update every second
+        };
+
+
+        const resendOtp = async (e) => {
+            e.preventDefault()
+            countdown = 90; // Reset the timer
+             const phone = await window.electronAPI.getStoreValue('phone');
+           // console.log(phone)
+            resendButton.disabled = true // Hide the button
+            resendButton.style.display = 'none';
+            timerDisplay.style.display = 'block'; // Show the timer display
+            startTimer();
+           
+
+            // Simulate OTP resend
+            try {
+
+
+                const response = await fetch('https://admin.jonotarbazar.today/api/v1/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: phone.phone }),
+                });
+
+                const data = await response.json();
+                if(data.success){
+                     await window.electronAPI.setStoreValue('otp', data.data.otp);
+                }
+
+            } catch (error) {
+                console.error(error)
+            }
+        };
+
+        // Start the timer on page load
+        startTimer();
+    </script>
+
+    <script>
+        document.getElementById('resendButton').addEventListener('click', resendOtp);
+        // Prevent default drag behavior
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+    </script>
+
+    <!--otp submission-->
+    <script>
+        document.getElementById("otp-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const toastElement = document.getElementById('liveToast');
+            const toastHeader = toastElement.querySelector('.toast-header');
+            const toastBody = toastElement.querySelector('.toast-body');
+            const toast = new bootstrap.Toast(toastElement, { autohide: true });
+            const validateBtn = document.getElementById('validateButton').innerHTML;
+            validateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Validating...'
+            const storedOTP = await window.electronAPI.getStoreValue('otp');
+            // Debugging: Check if OTP inputs are found
+            let otpInputs = document.querySelectorAll('#otp input');
+            console.log("OTP Inputs Found:", otpInputs);
+
+            let otp = '';
+            otpInputs.forEach(input => {
+                console.log("Input Value:", input.value); // Log each input value
+                otp += input.value;
+            });
+
+            console.log("Final Entered OTP:", otp);
+
+
+
+            // Convert values to strings and trim spaces
+            let sotp = String(storedOTP.otp).trim();
+            let inotp = String(otp).trim();
+
+            // console.log("Comparing - Stored:", sotp, "| Entered:", inotp);
+
+            if (sotp === inotp) {
+                console.log("OTP Matched! Logging in...");
+                  // Update toast with error message
+                    toastBody.textContent = "OTP Matched! Loggin in...";
+                    toastHeader.textContent = "Notification";
+
+                    // Show the toast
+                    toastElement.style.display = 'block'; // Make it visible
+                    toast.show();
+                await window.electronAPI.setStoreValue('isLoggedIn', true);
+
+
+                // const data = await response.json();
+
+                //       if (!response.ok) {
+                //     const errorText = await response.text();
+                //     console.error('API error:', errorText);
+                //     throw new Error(`API error: ${response.status}`);
+                // }
+
+                // const contentType = response.headers.get('content-type');
+                // if (!contentType || !contentType.includes('application/json')) {
+                //     const text = await response.text();
+                //     console.error('Unexpected response format:', text);
+                //     throw new Error('Expected JSON but received something else');
+                // }
+
+                // const data = await response.json(); // Safely parse JSON
+                // console.log('Received data:', data);
+               
+                window.electronAPI.navigate('dashboard', 'index');
+            } else {
+                console.log("OTP Mismatch! Stay on login.");
+                  // Update toast with error message
+                    toastBody.textContent = 'OTP Mismatch! Try logging in again';
+                    toastHeader.textContent = "Notification";
+
+                    // Show the toast
+                    toastElement.style.display = 'block'; // Make it visible
+                    toast.show();
+                validateBtn.innerHTML = validateBtn;
+                await window.electronAPI.setStoreValue('isLoggedIn', false);
+              
+               // window.electronAPI.navigate('otp', 'otp');
+            }
+        });
+
+    </script>
+
+    <!-- phone number on otp page -->
+     <script>
+        async function getClientPhone(){
+            const phn = await window.electronAPI.getStoreValue('phone');
+            document.getElementById('maskedNumber').textContent = '+88' + phn.phone;
+        }
+        document.addEventListener("DOMContentLoaded", getClientPhone);
+        // Prevent default drag behavior
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+     </script>
+</body>
+
+</html>

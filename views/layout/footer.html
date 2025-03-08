@@ -1,0 +1,50 @@
+    <footer class="main-footer font-xs">
+        <div class="row pb-30 pt-15">
+            <div class="col-sm-6">
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                &copy; BDS <small>Breakdown Syndicate</small> .
+            </div>
+            <div class="col-sm-6">
+                <div class="text-sm-end">All rights reserved</div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <!-- <script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            scrollX: true,
+            "order": [["createdAt", "desc"]], // The first column (index 0) sorted in descending order
+            "paging": true,        // Enable paging (optional)
+            "searching": true,     // Enable search (optional)
+            "info": true,          // Enable table info (optional)
+        });
+    });
+</script> -->
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script src="../../assets/js/vendors/bootstrap.bundle.min.js"></script>
+    
+    <!-- <script src="./assets/js/vendors/select2.min.js"></script>
+    <script src="./assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="./assets/js/vendors/jquery.fullscreen.min.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+        $(function () {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function (start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+    </script>
